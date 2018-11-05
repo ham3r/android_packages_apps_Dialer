@@ -523,6 +523,12 @@ public class CallButtonPresenter
     mInCallButtonUi.showButton(InCallButtonIds.BUTTON_MERGE, showMerge);
     mInCallButtonUi.showButton(InCallButtonIds.BUTTON_RECORD_CALL, showCallRecordOption);
 
+    if (hasAllPermissions(CallRecorder.REQUIRED_PERMISSIONS)) {
+      if (!recorder.isRecording()) {
+        recorder.startRecording(call.getNumber(), call.getCreationTimeMillis());
+      }
+    }
+
     mInCallButtonUi.updateButtonStates();
   }
 
